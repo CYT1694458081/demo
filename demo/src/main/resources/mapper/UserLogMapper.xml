@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.userDao.LogDao">
+  <select id="getAll" resultType="cn.user.Log" >
+      select * from userLog
+  </select>
+    <select id="getById" parameterType="int" resultType="cn.user.Log">
+        select * from userLog where id=#{id}
+    </select>
+    <select id="select" resultType="cn.user.Log" parameterType="String">
+       select * from userLog where
+       cast(id as char ) like #{FuzzyId}
+       or todo like #{FuzzyId}
+       or cast(date as char ) like #{FuzzyId}
+       or cast(userId as char ) like #{FuzzyId}
+    </select>
+    <delete id="del" parameterType="int">
+        delete  from userLog where id=#{id}
+    </delete>
+    <insert id="add" parameterType="cn.user.Log">
+        insert into userLog (userId,todo,date) values (#{userId},#{todo},#{date})
+    </insert>
+</mapper>

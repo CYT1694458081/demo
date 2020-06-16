@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.userDao.UserDao">
+
+    <select id="getUserById" parameterType="int" resultType="cn.user.User">
+       select * from mydb where id=#{id}
+    </select>
+    <select id="getAllUser"
+            resultType="cn.user.User">
+       select * from mydb
+    </select>
+    <select id="selectUser" resultType="cn.user.User" parameterType="String">
+       select * from mydb where
+       cast(id as char ) like #{FuzzyId}
+       or username like #{FuzzyId}
+       or password like #{FuzzyId}
+       or classname like #{FuzzyId}
+       or job like #{FuzzyId}
+       or cast(money as char ) like #{FuzzyId}
+    </select>
+    <delete id="delUserById" parameterType="int">
+        delete from  mydb where id=#{id}
+    </delete>
+    <update id="upUser" parameterType="cn.user.User">
+        update mydb set username=#{userName},password=#{passWord} ,classname=#{className} ,job=#{job} ,money=#{money}
+       where id=#{id}
+    </update>
+    <insert id="addUser" parameterType="cn.user.User">
+        insert into mydb values(#{id},#{userName},#{passWord},#{className},#{job},#{money})
+    </insert>
+</mapper>

@@ -1,0 +1,12 @@
+
+
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/yht
+        username: root
+        password: Cyt1694458081
+        driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+    mapper-locations: classpath:mapper/*Mapper.xml
+    type-aliases-package: cn.user
+
